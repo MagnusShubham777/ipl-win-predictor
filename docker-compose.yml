@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: ./backend
+    ports: ["8000:8000"]
+    environment:
+      JWT_SECRET: change-me
+      FRONTEND_ORIGINS: http://localhost:5173
+      MONGO_URI: mongodb://mongo:27017
+    depends_on: [mongo]
+  frontend:
+    build: ./frontend
+    ports: ["5173:80"]
+    depends_on: [backend]
+  mongo:
+    image: mongo:8
+    ports: ["27017:27017"]
+    volumes: [mongo_data:/data/db]
+volumes:
+  mongo_data:

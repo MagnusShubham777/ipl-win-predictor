@@ -1,0 +1,24 @@
+{
+  "best_model": "Logistic Regression",
+  "models": [
+    {
+      "name": "Logistic Regression",
+      "accuracy": 0.8555,
+      "roc_auc": 0.9307,
+      "log_loss": 0.33
+    },
+    {
+      "name": "Random Forest",
+      "accuracy": 0.85,
+      "roc_auc": 0.9271,
+      "log_loss": 0.3387
+    },
+    {
+      "name": "XGBoost",
+      "accuracy": 0.851,
+      "roc_auc": 0.9283,
+      "log_loss": 0.3359
+    }
+  ],
+  "rows": 20000
+}

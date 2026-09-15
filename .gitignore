@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+.env
+*.zip
+backend/data/ipl_json/*.json
+backend/model/ipl_model.joblib
