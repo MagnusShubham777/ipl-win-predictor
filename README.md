@@ -107,9 +107,3 @@ docker compose up --build
 The frontend will be available at http://localhost:5173 and API at http://localhost:8000.
 
 For cloud deployment, deploy the backend to a service that supports Docker/FastAPI and the frontend to a static hosting platform. Set `VITE_API_URL` to the deployed API origin and set `FRONTEND_ORIGINS` on the backend to the deployed frontend origin.
-
-## Resume bullets
-
-- Built a full-stack IPL analytics platform that predicts real-time match win probability using machine learning and historical ball-by-ball data.
-- Engineered chase-state features including runs required, balls remaining, wickets remaining, current run rate and required run rate, and compared Logistic Regression, Random Forest and XGBoost models using ROC-AUC, accuracy and log-loss.
-- Developed a FastAPI REST backend and responsive React dashboard with probability trends, scorecard analytics, JWT authentication and MongoDB-backed prediction history.
