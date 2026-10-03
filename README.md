@@ -113,7 +113,3 @@ For cloud deployment, deploy the backend to a service that supports Docker/FastA
 - Built a full-stack IPL analytics platform that predicts real-time match win probability using machine learning and historical ball-by-ball data.
 - Engineered chase-state features including runs required, balls remaining, wickets remaining, current run rate and required run rate, and compared Logistic Regression, Random Forest and XGBoost models using ROC-AUC, accuracy and log-loss.
 - Developed a FastAPI REST backend and responsive React dashboard with probability trends, scorecard analytics, JWT authentication and MongoDB-backed prediction history.
-
-## Original inspiration
-
-The project idea is inspired by the CampusX IPL win-probability project, but this repository is an independent full-stack implementation. Do not copy or represent another repository's code as your own.
