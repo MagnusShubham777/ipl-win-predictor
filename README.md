@@ -13,7 +13,7 @@ https://github.com/MagnusShubham777/ipl-win-predictor
 https://ipl-win-predictor-sigma.vercel.app
 
 **Backend API:**  
-[Add your Render deployment URL here](https://ipl-win-predictor-8exe.onrender.com)
+https://ipl-win-predictor-8exe.onrender.com)
 
 ---
 
