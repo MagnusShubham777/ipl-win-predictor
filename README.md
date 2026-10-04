@@ -1,109 +1,263 @@
-# IPL Win Probability Predictor — Full Stack AI/ML
+# 🏏 IPL Win Probability Predictor
 
-A portfolio-grade IPL analytics platform built with **React + FastAPI + scikit-learn/XGBoost + MongoDB**.
+A full-stack **Machine Learning web application** that predicts the winning probability of two IPL teams during a live match based on the current match situation.
 
-## Features
+The application uses historical IPL match data and a trained **Logistic Regression** model to estimate the probability of the batting and bowling teams winning the match.
 
-- Interactive React dashboard
-- Win probability prediction
-- Feature engineering from ball-by-ball match states
-- Logistic Regression, Random Forest and optional XGBoost model comparison
-- Accuracy, ROC-AUC and log-loss evaluation
-- Probability trend chart
-- Match scorecard workspace
-- User registration/login with JWT
-- Prediction history
-- MongoDB persistence with an in-memory fallback for local demos
-- FastAPI Swagger docs
-- Docker + docker-compose
-- Production environment examples
-- Optional live-score provider hook (requires a licensed/current provider)
+## 🔗 Project Links
 
-## Data
+**GitHub Repository:**  
+https://github.com/MagnusShubham777/ipl-win-predictor
 
-Cricsheet publishes IPL match data and currently lists the Indian Premier League as a club competition. Its JSON format is the primary/current format. Download the IPL JSON archive from:
-https://cricsheet.org/downloads/
+**Live Application:**  
+https://ipl-win-predictor-sigma.vercel.app
 
-Extract the JSON files into:
+**Backend API:**  
+[Add your Render deployment URL here](https://ipl-win-predictor-8exe.onrender.com)
 
-`backend/data/ipl_json/`
+---
 
-Then run:
+## 🚀 Features
 
-```bash
-cd backend
-python train_model.py
+- Predicts IPL match winning probability in real time
+- Displays winning probability for both teams
+- Takes current match conditions as input
+- Machine Learning model trained on historical IPL data
+- REST API built using FastAPI
+- Interactive frontend
+- Backend deployed on Render
+- Frontend deployed on Vercel
+
+---
+
+## 📊 Model Inputs
+
+The prediction model uses match information such as:
+
+- Batting Team
+- Bowling Team
+- Host City
+- Target Score
+- Current Score
+- Overs Completed
+- Wickets Lost
+
+From these values, additional features are calculated:
+
+- Runs Left
+- Balls Left
+- Wickets Remaining
+- Current Run Rate (CRR)
+- Required Run Rate (RRR)
+
+These features are passed to the trained machine learning model to calculate the winning probability.
+
+---
+
+## 🧠 Machine Learning Model
+
+The project uses **Logistic Regression** for probability prediction.
+
+The ML pipeline includes:
+
+- Data preprocessing
+- Feature engineering
+- Categorical feature encoding
+- Model training
+- Probability prediction using `predict_proba()`
+
+### Important Features
+
+```text
+runs_left
+balls_left
+wickets_left
+target
+current_run_rate
+required_run_rate
+batting_team
+bowling_team
+city
 ```
 
-The trainer builds post-delivery chase states and evaluates multiple classifiers on a holdout set. The best ROC-AUC model is saved to `backend/model/ipl_model.joblib` and metrics to `backend/model/metrics.json`.
+---
 
-### Demo mode
+## 🛠️ Tech Stack
 
-If no Cricsheet JSON files exist, `python train_model.py` generates a synthetic demo dataset so the application still starts. **Do not claim demo-model metrics as real IPL performance.**
+### Machine Learning
 
-## Backend
-
-```bash
-cd backend
-python -m venv .venv
-# Windows
-.venv\\Scripts\\activate
-pip install -r requirements.txt
-copy .env.example .env
-python train_model.py
-uvicorn main:app --reload --port 8000
-```
-
-API docs: http://localhost:8000/docs
-
-## Frontend
-
-```bash
-cd frontend
-npm install
-copy .env.example .env
-npm run dev
-```
-
-Open http://localhost:5173
-
-## MongoDB
-
-For local Docker development, `docker-compose.yml` starts MongoDB automatically.
-For MongoDB Atlas, put your connection string in `backend/.env` as `MONGO_URI` and never commit it.
-
-## Authentication
-
-The app exposes:
-
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-- `GET /api/history`
-
-JWT is used for sessions. Passwords are hashed before persistence. For a production application, use a strong `JWT_SECRET`, HTTPS, secure cookies/token storage, rate limiting, and a production password-hashing algorithm such as Argon2/bcrypt.
-
-## Live scorecard
-
-The project intentionally does not bundle an unlicensed live-score scraper. `GET /api/live-status` exposes the integration state. Set `LIVE_SCORE_API_URL` and implement the provider-specific authentication/normalization for a licensed provider. Keep provider API keys server-side.
-
-## Deployment
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Logistic Regression
 
 ### Backend
 
-Build and run the backend Docker image:
+- FastAPI
+- Uvicorn
+- Python
 
-```bash
-docker build -t ipl-backend ./backend
-docker run -p 8000:8000 --env-file backend/.env ipl-backend
+### Frontend
+
+- HTML
+- CSS
+- JavaScript
+
+### Deployment
+
+- Vercel — Frontend
+- Render — Backend
+- GitHub — Version Control
+
+---
+
+## 📂 Project Structure
+
+```text
+ipl-win-predictor/
+│
+├── backend/
+│   ├── main.py
+│   ├── train_model.py
+│   ├── model/
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── dataset/
+│
+├── README.md
+│
+└── .gitignore
 ```
 
-### Full local stack
+---
+
+## ⚙️ Installation
+
+Clone the repository:
 
 ```bash
-docker compose up --build
+git clone https://github.com/MagnusShubham777/ipl-win-predictor.git
 ```
 
-The frontend will be available at http://localhost:5173 and API at http://localhost:8000.
+Move into the project directory:
 
-For cloud deployment, deploy the backend to a service that supports Docker/FastAPI and the frontend to a static hosting platform. Set `VITE_API_URL` to the deployed API origin and set `FRONTEND_ORIGINS` on the backend to the deployed frontend origin.
+```bash
+cd ipl-win-predictor
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Run the Backend
+
+Start the FastAPI server:
+
+```bash
+uvicorn main:app --reload
+```
+
+The API will run locally at:
+
+```text
+http://127.0.0.1:8000
+```
+
+Health endpoint:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+---
+
+## 🎯 Prediction API
+
+The frontend communicates with the FastAPI backend through the prediction endpoint:
+
+```text
+POST /api/predict
+```
+
+The API processes the current match situation and returns the predicted winning probabilities of both teams.
+
+Example result:
+
+```json
+{
+  "batting_team_probability": 72.4,
+  "bowling_team_probability": 27.6
+}
+```
+
+---
+
+## 📈 How It Works
+
+```text
+User enters match details
+        ↓
+Frontend sends request
+        ↓
+FastAPI Backend
+        ↓
+Feature Engineering
+        ↓
+Trained ML Model
+        ↓
+Win Probability Prediction
+        ↓
+Frontend displays probabilities
+```
+
+---
+
+## 🔮 Future Improvements
+
+- Support newer IPL seasons and teams
+- Integrate live IPL match data
+- Improve prediction accuracy using advanced ML models
+- Add graphical probability visualization
+- Add historical match analysis
+- Compare Logistic Regression with Random Forest and XGBoost
+- Retrain the model automatically with new IPL data
+
+---
+
+## 👨‍💻 Author
+
+**Shubham Negi**
+
+GitHub:  
+https://github.com/MagnusShubham777
+
+Project Repository:  
+https://github.com/MagnusShubham777/ipl-win-predictor
+
+---
+
+## ⭐ Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
